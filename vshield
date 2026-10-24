@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+PROJECT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
+if [ -f "$PROJECT_DIR/.venv/bin/python" ]; then
+    PYTHONPATH="$PROJECT_DIR/src" exec "$PROJECT_DIR/.venv/bin/python" -m vshield "$@"
+else
+    PYTHONPATH="$PROJECT_DIR/src" exec python3 -m vshield "$@"
+fi
