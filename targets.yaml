@@ -1,0 +1,29 @@
+targets:
+  - id: web-prod-01
+    authorized: true
+    protocols:
+      http:
+        url: https://web01.example.com
+        mode: passive
+        allowed_paths:
+          - /
+      ssh:
+        host: web01.example.com
+        port: 22
+        username: scanner
+        identity: ~/.ssh/id_ed25519
+
+  - id: web-prod-02
+    authorized: true
+    protocols:
+      https:
+        url: https://web02.example.com
+
+  - id: linux-db-01
+    authorized: true
+    protocols:
+      ssh:
+        host: db01.example.com
+        port: 22
+        username: scanner
+        identity: ~/.ssh/id_ed25519
