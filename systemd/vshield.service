@@ -1,0 +1,20 @@
+[Unit]
+Description=vShield Vulnerability Assessment & Monitoring Daemon
+Documentation=https://github.com/vshield/vshield
+After=network.target
+
+[Service]
+Type=simple
+User=vshield
+Group=vshield
+Environment="VSHIELD_DATA_DIR=/var/lib/vshield"
+ExecStart=/usr/local/bin/vshield scan --targets /etc/vshield/targets.yaml --concurrency 5
+Restart=on-failure
+RestartSec=30
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/vshield
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

@@ -5,11 +5,11 @@ import tempfile
 import time
 import unittest
 
-from vulnshield.findings.storage import FindingStore
-from vulnshield.remote.authorization import TargetAuthorizer, AuthorizationError
-from vulnshield.remote.scanner import RemoteAssessmentEngine, CancellationContext
-from vulnshield.remote.scheduler import ScheduleManager, parse_interval_to_seconds
-from vulnshield.remote.targets import (
+from vshield.findings.storage import FindingStore
+from vshield.remote.authorization import TargetAuthorizer, AuthorizationError
+from vshield.remote.scanner import RemoteAssessmentEngine, CancellationContext
+from vshield.remote.scheduler import ScheduleManager, parse_interval_to_seconds
+from vshield.remote.targets import (
     TargetConfig,
     parse_targets_file,
     expand_cidr_target,

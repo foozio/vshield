@@ -3,14 +3,14 @@
 import time
 import unittest
 
-from vulnshield.findings.model import FindingStatus, Severity, Confidence
-from vulnshield.remote.authorization import TargetAuthorizer, AuthorizationError
-from vulnshield.remote.http.client import SafeHttpClient, RateLimiter
-from vulnshield.remote.http.fingerprint import TechnologyFingerprinter
-from vulnshield.remote.http.headers import HeaderSecurityAnalyzer
-from vulnshield.remote.http.checks import HttpSecurityChecks
-from vulnshield.remote.tls.certificates import CertificateInspector, CertificateInfo
-from vulnshield.remote.tls.configuration import TlsConfigurationAuditor, TlsAuditResult
+from vshield.findings.model import FindingStatus, Severity, Confidence
+from vshield.remote.authorization import TargetAuthorizer, AuthorizationError
+from vshield.remote.http.client import SafeHttpClient, RateLimiter
+from vshield.remote.http.fingerprint import TechnologyFingerprinter
+from vshield.remote.http.headers import HeaderSecurityAnalyzer
+from vshield.remote.http.checks import HttpSecurityChecks
+from vshield.remote.tls.certificates import CertificateInspector, CertificateInfo
+from vshield.remote.tls.configuration import TlsConfigurationAuditor, TlsAuditResult
 
 
 class TestHttpAndTls(unittest.TestCase):
@@ -22,14 +22,14 @@ class TestHttpAndTls(unittest.TestCase):
         def mock_executor(scheme, host, port, path, query, method, headers, verify_tls):
             if method == "HEAD":
                 return 200, "OK", {"content-type": "text/html"}, ""
-            return 200, "OK", {"content-type": "text/html"}, "<html><body>VulnShield Test Server</body></html>"
+            return 200, "OK", {"content-type": "text/html"}, "<html><body>vShield Test Server</body></html>"
 
         client = SafeHttpClient(authorizer=self.authorizer, transport_executor=mock_executor)
         url = "http://127.0.0.1:8080/"
 
         resp = client.request("GET", url)
         self.assertEqual(resp.status, 200)
-        self.assertIn("VulnShield Test Server", resp.body)
+        self.assertIn("vShield Test Server", resp.body)
 
         head_resp = client.request("HEAD", url)
         self.assertEqual(head_resp.status, 200)

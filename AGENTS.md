@@ -1,13 +1,18 @@
-# VulnShield CLI - Agent Guidelines & Architecture
+# vShield CLI - Agent Guidelines & Architecture
 
 ## System Overview
 
-VulnShield CLI is a production-grade vulnerability assessment and remediation engine supporting both local scanning (source code, dependencies, containers) and agentless remote assessment (HTTP, HTTPS, SSH).
+vShield CLI is a production-grade vulnerability assessment and remediation engine supporting both local scanning (source code, dependencies, containers) and agentless remote assessment (HTTP, HTTPS, SSH).
+
+**Official Product Name:** vShield  
+**CLI:** `vshield`  
+**Target Release:** v1.1  
+**Positioning:** Universal Vulnerability Detection, Monitoring & Remediation Framework
 
 ### Design Principles
 
 1. **Non-Destructive & Safe by Default**:
-   - HTTP/HTTPS assessments use safe `GET` and `HEAD` requests. No exploit payloads, brute force, or intrusive fuzzing.
+   - HTTP/HTTPS assessments use safe `GET`, `HEAD`, and `OPTIONS` requests. No exploit payloads, brute force, or intrusive fuzzing.
    - SSH assessments are strictly read-only, non-interactive, and run vetted command templates. Never execute unvetted commands or elevate privileges.
    - Patch application is disabled by default and requires independent approval.
 
@@ -29,9 +34,10 @@ VulnShield CLI is a production-grade vulnerability assessment and remediation en
 ## Repository Layout
 
 ```text
-src/vulnshield/
+src/vshield/
 ├── __init__.py
 ├── cli.py                     # Unified CLI entry point
+├── config.py                  # Environment variable resolution & legacy migration
 ├── findings/                  # Finding models & persistent storage
 │   ├── model.py
 │   └── storage.py

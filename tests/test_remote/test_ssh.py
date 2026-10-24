@@ -2,20 +2,20 @@
 
 import unittest
 
-from vulnshield.remote.authorization import TargetAuthorizer
-from vulnshield.remote.ssh.authentication import SshAuthCredentials, ProtectedCredentialProvider
-from vulnshield.remote.ssh.client import (
+from vshield.remote.authorization import TargetAuthorizer
+from vshield.remote.ssh.authentication import SshAuthCredentials, ProtectedCredentialProvider
+from vshield.remote.ssh.client import (
     SafeSshClient,
     SshExecutionError,
     SshAuthenticationError,
     SshHostKeyError,
 )
-from vulnshield.remote.ssh.collectors import (
+from vshield.remote.ssh.collectors import (
     CommandValidator,
     SshEvidenceCollector,
     SecurityCommandValidationError,
 )
-from vulnshield.remote.ssh.platforms import PlatformDetector, PlatformType
+from vshield.remote.ssh.platforms import PlatformDetector, PlatformType
 
 
 class TestSshAssessment(unittest.TestCase):

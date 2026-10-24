@@ -2,17 +2,17 @@
 
 import unittest
 
-from vulnshield.remote.authorization import (
+from vshield.remote.authorization import (
     TargetAuthorizer,
     AuthorizationError,
     redact_sensitive,
     CLOUD_METADATA_IPS,
 )
-from vulnshield.remote.ssh.collectors import (
+from vshield.remote.ssh.collectors import (
     CommandValidator,
     SecurityCommandValidationError,
 )
-from vulnshield.remote.targets import TargetConfig
+from vshield.remote.targets import TargetConfig
 
 
 class TestSecurityGuards(unittest.TestCase):

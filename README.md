@@ -1,15 +1,16 @@
-# VulnShield CLI v1.1
+# vShield CLI v1.1
 
-> Production-Grade Agentless Remote Vulnerability Assessment Engine (HTTP / HTTPS / SSH)
+> **Universal Vulnerability Detection, Monitoring & Remediation Framework**  
+> Agentless Remote & Local Assessment Engine (HTTP / HTTPS / SSH)
 
-VulnShield CLI extends security vulnerability assessment with an agentless remote assessment engine. It evaluates remote web services (HTTP/HTTPS) and Linux hosts/appliances (SSH) non-destructively, correlates low-fidelity signals with high-fidelity system telemetry, and generates authoritative remediation guidance.
+vShield (formerly VulnShield) is a production-grade vulnerability assessment and remediation engine. It evaluates remote web services (HTTP/HTTPS) and Linux hosts/appliances (SSH) non-destructively, correlates low-fidelity signals with high-fidelity system telemetry, and generates authoritative vendor-supported remediation plans.
 
 ---
 
 ## 1. Key Capabilities
 
 ### HTTP / HTTPS Assessment
-- **HTTP/1.1 and HTTP/2**: Safe `GET`, `HEAD`, and `OPTIONS` probes.
+- **HTTP/1.1 and HTTP/2**: Safe `GET`, `HEAD`, and safe `OPTIONS` probes.
 - **Technology Fingerprinting**: Identifies web servers (Apache, Nginx, IIS, Caddy, Envoy) and runtimes (PHP, Python, ASP.NET, OpenSSL).
 - **Security Headers**: Audits `Strict-Transport-Security`, `Content-Security-Policy`, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, and version disclosures.
 - **Cookie Security**: Flags missing `Secure`, `HttpOnly`, and `SameSite` flags.
@@ -43,72 +44,88 @@ VulnShield CLI extends security vulnerability assessment with an agentless remot
 
 ## 2. CLI Usage Guide
 
+### System Health & Diagnostics
+```bash
+vshield doctor
+```
+
 ### HTTP / HTTPS Scanning
 ```bash
 # Basic passive URL scan
-vulnshield scan --url https://example.com
+vshield scan --url https://example.com
 
 # Custom port
-vulnshield scan --url http://example.com:8080
+vshield scan --url http://example.com:8080
 
 # Active discovery mode (safe OPTIONS method probe)
-vulnshield scan --url https://example.com --mode active
+vshield scan --url https://example.com --mode active
 ```
 
 ### Authenticated SSH Assessment
 ```bash
 # Standard SSH assessment
-vulnshield scan --ssh admin@server.example.com
+vshield scan --ssh admin@server.example.com
 
 # With specific private key identity
-vulnshield scan --ssh admin@server.example.com --identity ~/.ssh/id_ed25519
+vshield scan --ssh admin@server.example.com --identity ~/.ssh/id_ed25519
 
 # Custom SSH port
-vulnshield scan --ssh admin@server.example.com --port 2222
+vshield scan --ssh admin@server.example.com --port 2222
 ```
 
 ### Combined Cross-Protocol Assessment
 ```bash
-vulnshield scan --url https://example.com --ssh admin@server.example.com
+vshield scan --url https://example.com --ssh admin@server.example.com
 ```
 
 ### Batch Target Inventories
 ```bash
-vulnshield scan --targets targets.yaml
-vulnshield scan --targets targets.yaml --concurrency 5
+vshield scan --targets targets.yaml
+vshield scan --targets targets.yaml --concurrency 5
 ```
 
 ### Target Management
 ```bash
-vulnshield targets add --url https://example.com
-vulnshield targets add --ssh admin@server.example.com
-vulnshield targets list
-vulnshield targets validate
+vshield targets add --url https://example.com
+vshield targets add --ssh admin@server.example.com
+vshield targets list
+vshield targets validate
 ```
 
 ### Scheduled Scanning
 ```bash
-vulnshield schedule add --targets targets.yaml --interval 24h
-vulnshield schedule list
+vshield schedule add --targets targets.yaml --interval 24h
+vshield schedule list
 ```
 
 ### Findings & Differential Analysis
 ```bash
-vulnshield findings list
-vulnshield findings show FINDING_ID
-vulnshield findings compare SCAN_ID_1 SCAN_ID_2
+vshield findings list
+vshield findings show FINDING_ID
+vshield findings compare SCAN_ID_1 SCAN_ID_2
 ```
 
 ### Remediation & Patch Verification
 ```bash
-vulnshield remediate recommend --target TARGET_ID
-vulnshield patch sources --target TARGET_ID
-vulnshield patch verify --target TARGET_ID
+vshield remediate recommend --target TARGET_ID
+vshield patch sources --target TARGET_ID
+vshield patch verify --target TARGET_ID
 ```
 
 ---
 
-## 3. Supported Environments & Limitations
+## 3. Environment Variables & Backward Compatibility
+
+| Environment Variable | Description | Legacy Fallback |
+|---|---|---|
+| `VSHIELD_DATA_DIR` | Path to persistent storage and findings database | `VULNSHIELD_DATA_DIR` |
+| `VSHIELD_SSH_PASSWORD` | In-memory protected password provider for SSH | `VULNSHIELD_SSH_PASSWORD` |
+
+Backward-compatible command alias: `vulnshield` is aliased to `vshield` with a deprecation notice.
+
+---
+
+## 4. Supported Environments & Limitations
 
 ### Supported Environments
 - **Linux Hosts**: Ubuntu, Debian, Red Hat Enterprise Linux (RHEL), CentOS, Rocky Linux, AlmaLinux, Fedora, Alpine Linux.
@@ -116,7 +133,7 @@ vulnshield patch verify --target TARGET_ID
 - **Web Services**: Any HTTP/1.1 or HTTP/2 compliant web server or reverse proxy.
 
 ### Limitations & Deliberate Exclusions
-- **No Exploitation**: VulnShield never sends exploit payloads or memory-corrupting fuzz vectors.
+- **No Exploitation**: vShield never sends exploit payloads or memory-corrupting fuzz vectors.
 - **No In-Band Credential Guessing**: No brute-forcing of passwords or private keys.
 - **No Unapproved Subnet Sweeps**: CIDR inventories require explicit authorization flags and have an enforced maximum limit of 256 hosts.
 - **Remote Patch Execution Disabled**: Remote patch execution is disabled by default to prevent unintentional operational disruption.

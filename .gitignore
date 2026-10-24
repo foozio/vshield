@@ -27,6 +27,7 @@ venv/
 ENV/
 
 # Data and SQLite
+.vshield/
 .vulnshield/
 *.db
 *.sqlite3

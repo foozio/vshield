@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  vshield:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vshield-scanner
+    volumes:
+      - vshield_data:/var/lib/vshield
+      - ./targets.yaml:/etc/vshield/targets.yaml:ro
+    environment:
+      - VSHIELD_DATA_DIR=/var/lib/vshield
+    command: ["scan", "--targets", "/etc/vshield/targets.yaml"]
+    restart: unless-stopped
+
+volumes:
+  vshield_data:
+    driver: local

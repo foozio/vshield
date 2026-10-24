@@ -2,12 +2,12 @@
 
 import unittest
 
-from vulnshield.advisory.intelligence import AdvisoryIntelligence, AdvisoryEntry
-from vulnshield.advisory.backports import VendorBackportDetector
-from vulnshield.findings.model import Finding, Evidence, Protocol, Severity, Confidence, FindingStatus
-from vulnshield.remote.correlation import CrossProtocolCorrelator
-from vulnshield.remote.ssh.collectors import SshSystemTelemetry
-from vulnshield.remote.ssh.platforms import PlatformProfile, PlatformType
+from vshield.advisory.intelligence import AdvisoryIntelligence, AdvisoryEntry
+from vshield.advisory.backports import VendorBackportDetector
+from vshield.findings.model import Finding, Evidence, Protocol, Severity, Confidence, FindingStatus
+from vshield.remote.correlation import CrossProtocolCorrelator
+from vshield.remote.ssh.collectors import SshSystemTelemetry
+from vshield.remote.ssh.platforms import PlatformProfile, PlatformType
 
 
 class TestCorrelationAndAdvisory(unittest.TestCase):

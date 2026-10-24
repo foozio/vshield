@@ -3,14 +3,14 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vulnshield"
+name = "vshield"
 version = "1.1.0"
-description = "VulnShield CLI - Production-Grade Remote & Local Vulnerability Assessment Engine"
+description = "vShield v1.1 — Universal Vulnerability Detection, Monitoring & Remediation Framework"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "Apache-2.0"}
 authors = [
-    {name = "VulnShield Security Team"}
+    {name = "vShield Security Team"}
 ]
 dependencies = [
     "pyyaml>=6.0; extra == 'full'",
@@ -22,7 +22,8 @@ test = [
 ]
 
 [project.scripts]
-vulnshield = "vulnshield.cli:main"
+vshield = "vshield.cli:main"
+vulnshield = "vshield.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

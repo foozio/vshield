@@ -1,8 +1,13 @@
-# VulnShield Remote Assessment Engine Architecture
+# vShield Remote Assessment Engine Architecture
 
 ## 1. Overview
 
-VulnShield v1.1 introduces an agentless Remote Assessment Engine covering HTTP, HTTPS, and SSH. The engine assesses systems remotely without intrusive exploits, correlating low-fidelity signals (such as web banners) with high-fidelity system telemetry (such as package manager databases and vendor backport fixes).
+vShield v1.1 introduces an agentless Remote Assessment Engine covering HTTP, HTTPS, and SSH. The engine assesses systems remotely without intrusive exploits, correlating low-fidelity signals (such as web banners) with high-fidelity system telemetry (such as package manager databases and vendor backport fixes).
+
+**Official Product Name:** vShield  
+**CLI:** `vshield`  
+**Target Release:** v1.1  
+**Positioning:** Universal Vulnerability Detection, Monitoring & Remediation Framework
 
 ## 2. Threat Model & Security Controls
 
@@ -48,7 +53,7 @@ VulnShield v1.1 introduces an agentless Remote Assessment Engine covering HTTP, 
 
 ## 3. Evidence Correlation & Confidence Scoring
 
-Remote scanning evidence ranges from superficial banners to authoritative package changelogs. VulnShield calculates finding confidence and status as follows:
+Remote scanning evidence ranges from superficial banners to authoritative package changelogs. vShield calculates finding confidence and status as follows:
 
 | Evidence Level | Description | Confidence | Typical Status |
 |---|---|---|---|
@@ -59,6 +64,6 @@ Remote scanning evidence ranges from superficial banners to authoritative packag
 
 ## 4. Remediation Workflow
 
-VulnShield recommends vendor-supported remediation:
+vShield recommends vendor-supported remediation:
 - **Linux Systems**: Distribution-native package manager update commands (`apt-get install --only-upgrade <pkg>`, `dnf update <pkg>`, `apk upgrade <pkg>`) with non-destructive `--dry-run` simulation options.
 - **Network Appliances**: Documented firmware download URLs, hotfixes, and vendor security advisory references (Cisco, Fortinet, F5, Juniper). Generic Linux shell commands are never attempted against appliances.

@@ -13,7 +13,7 @@ class MockHttpHandler(http.server.BaseHTTPRequestHandler):
 
     # Handlers can override responses via class attributes
     custom_headers: Dict[str, str] = {}
-    response_body: str = "<html><body>VulnShield Test Server</body></html>"
+    response_body: str = "<html><body>vShield Test Server</body></html>"
     status_code: int = 200
     redirect_target: Optional[str] = None
     redirect_loop: bool = False

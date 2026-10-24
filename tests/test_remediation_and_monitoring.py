@@ -4,11 +4,11 @@ import tempfile
 import time
 import unittest
 
-from vulnshield.findings.model import Finding, Severity, Confidence, FindingStatus, Protocol
-from vulnshield.findings.storage import FindingStore
-from vulnshield.monitor.tracker import DifferentialTracker
-from vulnshield.remediation.patches import PatchEngine
-from vulnshield.remediation.recommender import RemediationRecommender
+from vshield.findings.model import Finding, Severity, Confidence, FindingStatus, Protocol
+from vshield.findings.storage import FindingStore
+from vshield.monitor.tracker import DifferentialTracker
+from vshield.remediation.patches import PatchEngine
+from vshield.remediation.recommender import RemediationRecommender
 
 
 class TestRemediationAndMonitoring(unittest.TestCase):
@@ -85,7 +85,7 @@ class TestRemediationAndMonitoring(unittest.TestCase):
             cve="CVE-2024-2756",
             affected_component="php",
         )
-        from vulnshield.findings.model import ScanResult
+        from vshield.findings.model import ScanResult
         self.store.save_scan_result(
             ScanResult(
                 scan_id="SCAN-INITIAL",
