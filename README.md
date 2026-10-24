@@ -137,3 +137,9 @@ Backward-compatible command alias: `vulnshield` is aliased to `vshield` with a d
 - **No In-Band Credential Guessing**: No brute-forcing of passwords or private keys.
 - **No Unapproved Subnet Sweeps**: CIDR inventories require explicit authorization flags and have an enforced maximum limit of 256 hosts.
 - **Remote Patch Execution Disabled**: Remote patch execution is disabled by default to prevent unintentional operational disruption.
+
+---
+
+## 5. License
+
+This project is licensed under the [MIT License](LICENSE) — see the `LICENSE` file for details.

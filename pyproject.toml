@@ -8,7 +8,7 @@ version = "1.1.0"
 description = "vShield v1.1 — Universal Vulnerability Detection, Monitoring & Remediation Framework"
 readme = "README.md"
 requires-python = ">=3.9"
-license = {text = "Apache-2.0"}
+license = {text = "MIT"}
 authors = [
     {name = "vShield Security Team"}
 ]
